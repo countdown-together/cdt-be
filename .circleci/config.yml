@@ -10,20 +10,22 @@ jobs:
   checkout_code:
     <<: *container_config
     steps:
-      - run: mkdir -p workspace
+      - run: mkdir -p ws
       - checkout
       - persist_to_workspace:
-          root: workspace
+          root: ws
           paths: .
   build:
     <<: *container_config
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: /tmp/ws
       - run: mvn -B -DskipTests clean package
   test:
     <<: *container_config
     steps:
+      - attach_workspace:
+          at: /tmp/ws
       - run: mvn test
 
 workflows:
