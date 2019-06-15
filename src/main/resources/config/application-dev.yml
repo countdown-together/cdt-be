@@ -1,2 +1,5 @@
 server:
   port: 6014
+java:
+  runtime:
+    version: 11
