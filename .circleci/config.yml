@@ -7,27 +7,9 @@ references:
     working_directory: ~/repository
 
 jobs:
-  checkout_code:
+  checkout_build_test:
     <<: *container_config
     steps:
       - checkout
-  build:
-    <<: *container_config
-    steps:
       - run: mvn -B -DskipTests clean package
-  test:
-    <<: *container_config
-    steps:
       - run: mvn test
-
-workflows:
-  version: 2
-  build_test:
-    jobs:
-      - checkout_code
-      - build:
-          requires:
-            - checkout_code
-      - test:
-          requires:
-            - build
