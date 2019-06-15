@@ -1,32 +1,42 @@
-version: 2.1
+version: 2.0
 
 references:
   container_config: &container_config
     docker:
       - image: circleci/openjdk:11-jdk
-    working_directory: ~/repo
+    working_directory: ~/repository
+
+  restore_repo: &restore_repo
+    restore_cache:
+      keys:
+      - v1-repo-{{ .Branch }}-{{ .Revision }}
+      - v1-repo-{{ .Branch }}
+      - v1-repo
+
 
 jobs:
   checkout_code:
     <<: *container_config
     steps:
-      - run: mkdir -p ws
       - checkout
-      - persist_to_workspace:
-          root: ws
-          paths: .
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - .
+
   build:
     <<: *container_config
     steps:
-      - attach_workspace:
-          at: /tmp/ws
+      - *restore_repo
       - run: mvn -B -DskipTests clean package
+
   test:
     <<: *container_config
     steps:
-      - attach_workspace:
-          at: /tmp/ws
+      - *restore_repo
       - run: mvn test
+
+
 
 workflows:
   version: 2
