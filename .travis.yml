@@ -1,11 +1,8 @@
 language: java
 jdk: openjdk11
-branches:
-  only:
-    - master
-    - initial
 deploy:
  provider: heroku
+ strategy: git
  api_key:
   secure: $HEROKU_API_KEY
  app: cdt-be
