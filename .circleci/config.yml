@@ -1,4 +1,4 @@
-version: 2.0
+version: 2.1
 
 references:
   container_config: &container_config
@@ -10,10 +10,15 @@ jobs:
   checkout_code:
     <<: *container_config
     steps:
+      - run: mkdir -p workspace
       - checkout
+      - persist_to_workspace:
+          root: workspace
   build:
     <<: *container_config
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - run: mvn -B -DskipTests clean package
   test:
     <<: *container_config
