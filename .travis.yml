@@ -1,8 +1,6 @@
 language: java
 jdk: openjdk11
 deploy:
- provider: heroku
- strategy: git
- api_key:
-  secure: $HEROKU_API_KEY
- app: cdt-be
+  provider: firebase
+  token:
+    secure: "TcTAoKnED/09QJf2Yb4TG42ZCMNEgGANl5gzTcDX42pNO2Yoiwzm9X0+JUfpIpxKHvL+0nlKtW87BsXUCHUndwE2TUKfVJPgQrbWcDkwx7fABSgEsxRCz0QXqOgtfDEaCPrLTXi8E17J/UP6DKbh98cRDrBsdWJ3z/DfvqF7DiPC9Ck34Mvkw0tNVCmjx6RWY7es2C3DU3MKo9Zd/Vg6rXHuoSdhT+tXUNXK/gw+DQLdYZglMbTufRyUfSXx4Al8gOMWQZcUaCH/iRX+dvXz1BcJG3TLVqvuPbNyNjLyW9bUNHr79fr1XYbgsdRWdGwQOA/69rQwE6Q1z2JdLO1ERYLFescIdDkKgpziwwS7RFTZ81RGemuPGFf2fuicb/tyYeYKByLorjq7YWrhGkrnR15EZsVwEY0NXuUednNZfZO/F/Bp0SL18kEs+Y4CtOCoHNNWyr2KUceq50WAtRR7zsL9cP+qP9BZGU7XdBG8tM862WYIaO+Vmyo+mKic5Ez3jLxfX2q4ktqnzEg101TeleyjD1aXA9+3qOcDA3QECg4e8LF9bytbrjktoxRkmum0P/MyHhu59KztZ+C5czvnQBam2vETD2zkxbYKRLMyEvbTU9GLQIC/ToI2k7bUCuUM8e69JGo0WHAo4W1sqJzTLW0ecaTUWmebCOGAUbpVD+I="
