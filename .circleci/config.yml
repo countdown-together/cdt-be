@@ -9,11 +9,21 @@ references:
   restore_repo: &restore_repo
     restore_cache:
       keys:
-      - v1-repo-{{ .Branch }}-{{ .Revision }}
-      - v1-repo-{{ .Branch }}
-      - v1-repo
+        - v1-repo-{{ .Branch }}-{{ .Revision }}
+        - v1-repo-{{ .Branch }}
+        - v1-repo
 
+  jars_cache_key: &jars_cache_key
+    v1-dependencies-{{ checksum "pom.xml" }}
+  jars_backup_cache_key: &jars_backup_cache_key
+    v1-dependencies
 
+  restore_jars: &restore_jars
+    restore_cache:
+      keys:
+        - *jars_cache_key
+        - *jars_backup_cache_key
+        
 jobs:
   checkout_code:
     <<: *container_config
@@ -28,19 +38,44 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *restore_jars
       - run: mvn -B -DskipTests clean package
+      - save_cache:
+          key: *jars_cache_key
+          paths:
+          - ~/.m2
 
   test:
     <<: *container_config
     steps:
       - *restore_repo
+      - *restore_jars
       - run: mvn test
 
-
-
+  deploy:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - *restore_jars
+      - run: cp .mvn/wrapper/settings.xml ~/.m2/settings.xml
+      - run: echo "<settingsSecurity><master>${MAVEN_SECURITY_MASTER}</master></settingsSecurity>" > ~/.m2/settings-security.xml
+      - run:
+          name: Environment variables
+          command: echo 'export IMAGE="countdowntogether/cdt-be:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}"' >> $BASH_ENV
+      - run:
+          name: Publish docker image with jib
+          command: |
+            ./mvnw compile jib:build -B -DskipTests \
+              -Dimage=${IMAGE} \
+              -Dbuild.number=${CIRCLE_BUILD_NUM} \
+              -Dcommit.hash=${CIRCLE_SHA1} \
+              -Dcircle.workflow.guid=${CIRCLE_WORKFLOW_ID} \
+              -Dbuild.user=${CIRCLE_PROJECT_USERNAME} \
+              -Dbuild.repo=${CIRCLE_PROJECT_REPONAME} \
+              
 workflows:
   version: 2
-  build_test:
+  build_test_deploy:
     jobs:
       - checkout_code
       - build:
@@ -49,3 +84,9 @@ workflows:
       - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
