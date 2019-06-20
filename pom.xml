@@ -104,6 +104,29 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>1.3.0</version>
+        <configuration>
+          <to>
+            <image>registry-1.docker.io/countdowntogether/${project.artifactId}:${project.version}-${build.number}</image>
+          </to>
+          <container>
+            <jvmFlags>
+              <jvmFlag>-Dbuild.number=${build.number}</jvmFlag>
+              <jvmFlag>-Dcommit.hash=${commit.hash}</jvmFlag>
+              <jvmFlag>-Dbuild.user=${build.user}</jvmFlag>
+              <jvmFlag>-Dbuild.repo=${build.repo}</jvmFlag>
+              <jvmFlag>-Dcircle.workflow.guid=${circle.workflow.guid}</jvmFlag>
+              <jvmFlag>-Dserver.port=8080</jvmFlag>
+            </jvmFlags>
+            <ports>
+              <port>8080</port>
+            </ports>
+          </container>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
