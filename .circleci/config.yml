@@ -72,7 +72,15 @@ jobs:
               -Dcircle.workflow.guid=${CIRCLE_WORKFLOW_ID} \
               -Dbuild.user=${CIRCLE_PROJECT_USERNAME} \
               -Dbuild.repo=${CIRCLE_PROJECT_REPONAME} \
-              
+      - add_ssh_keys:
+          fingerprints:
+            - "77:9c:f7:e2:0f:12:87:82:63:0f:87:ef:80:cd:93:96"
+      - run:
+          name: Deploy app to DO
+          command: |
+            ssh -o StrictHostKeyChecking=no ${DROPLET_USER}@${DROPLET_IP} "/bin/bash .~/cdt/deploy_app.sh ${IMAGE}"
+
+
 workflows:
   version: 2
   build_test_deploy:
