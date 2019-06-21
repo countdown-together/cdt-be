@@ -11,7 +11,7 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
-  <groupId>com.cdt</groupId>
+  <groupId>org.eightwelve</groupId>
   <artifactId>cdt-be</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>cdt-be</name>
@@ -110,7 +110,7 @@
         <version>1.3.0</version>
         <configuration>
           <to>
-            <image>registry-1.docker.io/countdowntogether/${project.artifactId}:${project.version}-${build.number}</image>
+            <image>registry-1.docker.io/eightwelve/${project.artifactId}:${project.version}-${build.number}</image>
           </to>
           <container>
             <jvmFlags>

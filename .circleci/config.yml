@@ -61,7 +61,9 @@ jobs:
       - run: echo "<settingsSecurity><master>${MAVEN_SECURITY_MASTER}</master></settingsSecurity>" > ~/.m2/settings-security.xml
       - run:
           name: Environment variables
-          command: echo 'export IMAGE="countdowntogether/cdt-be:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}"' >> $BASH_ENV
+          command: |
+            echo "export TAG_SUFFIX=$(date +%Y%m%d%H%M%S)" >> $BASH_ENV
+            echo 'export IMAGE="eightwelve/cdt-be:${CIRCLE_BRANCH}-${TAG_SUFFIX}"' >> $BASH_ENV
       - run:
           name: Publish docker image with jib
           command: |
