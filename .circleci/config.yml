@@ -76,9 +76,9 @@ jobs:
           fingerprints:
             - "77:9c:f7:e2:0f:12:87:82:63:0f:87:ef:80:cd:93:96"
       - run:
-          name: Deploy app to DO
+          name: Deploy app to server
           command: |
-            ssh -o StrictHostKeyChecking=no ${DROPLET_USER}@${DROPLET_IP} "/bin/bash .~/cdt/deploy_app.sh ${IMAGE}"
+            ssh -o StrictHostKeyChecking=no ${DEPLOYMENT_USER}@${SERVER} "/bin/bash ./deploy_app.sh ${IMAGE}"
 
 
 workflows:
