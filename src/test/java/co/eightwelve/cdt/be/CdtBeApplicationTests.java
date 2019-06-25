@@ -1,4 +1,4 @@
-package co.eightwelve.be;
+package co.eightwelve.cdt.be;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
