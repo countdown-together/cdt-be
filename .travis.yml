@@ -1,7 +1,21 @@
 language: java
 jdk: openjdk11
+
 deploy:
- provider: heroku
- api_key:
-  secure: $HEROKU_API_KEY
- app: cdt-be
+  provider: heroku
+  api_key:
+    secure: $HEROKU_API_KEY
+  app: cdt-be
+
+addons:
+  sonarcloud:
+    organization: "eightwelve"
+    token:
+      secure: "TaRCg0i8lW7pbkJN38z8CmHOEQiEstpDDqmIXP7zFC+dmnObXrjl5U3Fy4sabKtbd3IKFX3fsg9zzH3Abd7Mpe6RvjTRzfGDE/cvpZPaGa29rorWaKY5aJyiz78aKgNn8cGiRYTsOltIlLFw89WeVIo3Zuj4mNMdaLej7676Ebw1DN8oB9wvOhMTF+hCFjlTZoPHcbk4HKdiZzpqsF9Bj9/xevaCAHEtTZXnuzvJ2NptNKpwVr+kPN6fuJFwxZFGIfr9TleXg6x029h/Xay0y1vZcSazONp5sN5hFB93DUYqYY6ajlpN8UrRcgHbQcSHmyeoGHdUFXNoj/tMkV4VYpyHjrV6uvJub2a0l2MJH31mWf4an5/iFZ3U6pfQyj17XFVky92Dld7P4swnlRZ3Lkgp4CX7z7C/g3rRUDT2szEoYG4KX5pNIm03GnYDI7Viv9UfjGtYkyT3eKOGuCOdD/JIbkvL9FWgY28Dafc2sqsFcJCyJhO0hmj0btIAmLEcgjUOV0WCfD8fYjjuC6RI/2Lcy3LSKk598zcxcLWlgTavSbs9xcCSLB0KucB4zBb9gGVyOEr3q4C6hqJyIkOT6REyt+7o6PA/Ak0OTaF+It0SQfcFqLO0taKnF2bPXGwNJRg9X/qshl5DbiEm8y3JN/2Gaz7Qtr4iAbFgMCowU/Q="
+script:
+  - mvn clean verify sonar:sonar -Pcoverage
+
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
