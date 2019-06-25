@@ -1,4 +1,4 @@
-package com.cdt.be.infrastructure.swagger;
+package co.eightwelve.be.infrastructure.swagger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

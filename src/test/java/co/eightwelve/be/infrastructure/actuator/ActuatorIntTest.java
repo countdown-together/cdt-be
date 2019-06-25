@@ -1,4 +1,4 @@
-package com.cdt.be.infrastructure.actuator;
+package co.eightwelve.be.infrastructure.actuator;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.cdt.be.infrastructure.security;
+package co.eightwelve.be.infrastructure.security;
 
 import java.util.Collections;
 import java.util.List;
