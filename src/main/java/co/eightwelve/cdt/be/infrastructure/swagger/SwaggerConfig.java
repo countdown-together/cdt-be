@@ -1,4 +1,4 @@
-package com.cdt.be.infrastructure.swagger;
+package co.eightwelve.cdt.be.infrastructure.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

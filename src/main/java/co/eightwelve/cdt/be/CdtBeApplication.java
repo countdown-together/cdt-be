@@ -1,4 +1,4 @@
-package com.cdt.be;
+package co.eightwelve.cdt.be;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
