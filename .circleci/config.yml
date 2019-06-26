@@ -51,6 +51,7 @@ jobs:
       - *restore_repo
       - *restore_jars
       - run: mvn test
+      - run: "bash <(curl -s https://codecov.io/bash)"
 
   deploy:
     <<: *container_config
