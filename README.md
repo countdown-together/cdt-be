@@ -5,6 +5,7 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=eightwelve_cdt-be&metric=bugs)](https://sonarcloud.io/dashboard?id=eightwelve_cdt-be)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=eightwelve_cdt-be&metric=code_smells)](https://sonarcloud.io/dashboard?id=eightwelve_cdt-be)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=eightwelve_cdt-be&metric=coverage)](https://sonarcloud.io/dashboard?id=eightwelve_cdt-be)
+[![codecov](https://codecov.io/gh/eightwelve/cdt-be/branch/master/graph/badge.svg)](https://codecov.io/gh/eightwelve/cdt-be)
 
 Backend for countdown-together
 
