@@ -19,7 +19,7 @@
 
   <properties>
     <java.version>11</java.version>
-    <checkstyle.version>8.19</checkstyle.version>
+    <checkstyle.version>8.29</checkstyle.version>
     <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
     <swagger2.version>2.9.2</swagger2.version>
   </properties>
